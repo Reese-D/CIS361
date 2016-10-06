@@ -13,11 +13,11 @@ int main(int argc, char **argv){
 }
 
 int testRemoveDuplicates(){
-  char word[11] =  "ThisIsATest";
-  if(strcmp("thisiaet",removeDuplicates(word))){
-    fprintf(stderr, "Remove duplicates does not work properly\n");
+  char *word =  "thisisatest\0";
+  if(strcmp("thisiaet\0",removeDuplicates(word))){
+    fprintf(stderr, "remove duplicates does not work properly\n");
   }
-  char word2[15] = "iiiiiiiiiiiiiii";
+  char *word2 = "iiiiiiiiiiiiiii\0";
   if(strcmp("i", removeDuplicates(word2))){
     fprintf(stderr, "all i's failed for removeDuplicates\n");
   }
@@ -25,33 +25,34 @@ int testRemoveDuplicates(){
 }
 
 int testTargetFound(){
-  char word[10] = "abcdefghij";
+  char *word = "abcdefghij\0";
   if(!targetFound(word, 5, 'j')){
-    fprintf(stderr, "Faulty find of char in string\n");
+    fprintf(stderr, "faulty find of char in string\n");
   }
 
-  if(targetFound(word, 10, 'j')){
+  if(targetFound(word, 9, 'j')){
     fprintf(stderr,  "target not found when it should be\n");
   }
 
-  if(targetFound(word, -1, 'j')){
-    fprintf(stderr, "targetFound shouldn't pass with negative values\n");
-  }
+  //  if(targetFound(word, -1, 'j')){
+  //    fprintf(stderr, "targetfound shouldn't pass with negative values\n");
+  //  }
   return 0;
 }
 
 int testInitializeEncryptArray(){
-  char word[11] =  "ThisIsATest";
-  char returnVal[26];
-  initializeEncryptArray(word, returnVal);
-  if(strcmp("thisaezyxwvurqponmlkjhgfdcb", returnVal)){
-    fprintf(stderr, "Encrypt not working correctly with complex string\n");
+  char *word =  "thisisatest\0";
+  char *returnVal;
+  returnVal = initializeEncryptArray(word);
+  if(strcmp("thisaezyxwvurqponmlkjhgfdcb\0", returnVal)){
+    fprintf(stderr, "encrypt not working correctly with complex string\n");
+    fprintf(stderr, "%s\n", returnVal);
   }
-  char word2[15] = "iiiiiiiiiiiiiii";
+  char *word2 = "iiiiiiiiiiiiiii\0";
 
-  initializeEncryptArray(word2,returnVal);
+  initializeEncryptArray(word2);
   if(strcmp("izyxwvutsrqponmlkjhgfedcba", returnVal)){
-    fprintf(stderr, "Simple encrypt not working\n");
+    fprintf(stderr, "simple encrypt not working\n");
   }
   return 0;
 }

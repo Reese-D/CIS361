@@ -5,9 +5,9 @@
 #include <stdlib.h>
 
 
-char *removeDuplicates(char word [], int size);
+char *removeDuplicates(char word []);
 int targetFound(char charArray[], int num, char target);
-void initializeEncryptArray(char key[], char encrypt[]);
+char *initializeEncryptArray(char key[]);
 void initializeDecryptArray(char encrypt[], char decrypt[]);
 void processInput(FILE * inf, FILE * outf, char substitute[]);
 
